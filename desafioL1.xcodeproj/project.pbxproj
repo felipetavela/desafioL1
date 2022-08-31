@@ -118,9 +118,9 @@
 		284C874328BE847600EA16B8 /* Controlllers */ = {
 			isa = PBXGroup;
 			children = (
+				284C874628BED6D600EA16B8 /* SplashViewController.swift */,
 				284C872628BE612700EA16B8 /* EntryViewController.swift */,
 				284C874428BE84D400EA16B8 /* DetailsViewController.swift */,
-				284C874628BED6D600EA16B8 /* SplashViewController.swift */,
 			);
 			path = Controlllers;
 			sourceTree = "<group>";

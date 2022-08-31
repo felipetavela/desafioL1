@@ -25,8 +25,6 @@ class DetailsViewController: UIViewController {
         sinopseLabel.text = movieSinopse
         dateLabel.text = date
         
-        
-        
         imageMovieDetails.image = imageURL_ToUIImage(imageKey: imageKey!)
     }
     

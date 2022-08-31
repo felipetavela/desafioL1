@@ -12,6 +12,8 @@ class EntryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        movieSearchBar.setShowsCancelButton(true, animated: true)
+        
         movieSearchBar.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
@@ -97,7 +99,9 @@ extension EntryViewController: UISearchBarDelegate {
             }
         }
     }
-    }
+
+}
+ 
 
 
 
