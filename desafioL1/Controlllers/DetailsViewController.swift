@@ -10,13 +10,16 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var tituloLabel: UILabel!
     @IBOutlet weak var subtituloLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+   
+    @IBOutlet weak var shareButton: UIButton!
     
     var date: String?
     var movieTitle: String?
     var movieSubtitulo: String?
     var movieSinopse: String?
     var imageKey: String?
-    
+    var id: Int?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,21 +27,27 @@ class DetailsViewController: UIViewController {
         subtituloLabel.text = movieSubtitulo
         sinopseLabel.text = movieSinopse
         dateLabel.text = date
-        
-        imageMovieDetails.image = imageURL_ToUIImage(imageKey: imageKey!)
+        shareButton.layer.cornerRadius = 15
+
+        imageMovieDetails.image = UIImage().imageURL_ToUIImage(imageKey: imageKey!)
     }
     
+    
+    @objc private func presentShareSheet(image: UIImage){
+        
+        guard let url = URL(string: "https://www.themoviedb.org/movie/\(id!)") else {return}
+        
+            let shareSheetVC = UIActivityViewController (activityItems: [
+                image,
+            url
+            ], applicationActivities: nil
+            )
+            present(shareSheetVC, animated: true)
+    }
+
     
     @IBAction func shareAction(_ sender: Any) {
         
-        let image = view.asImage()
-        
-        let imageToShare = [ image ]
-               let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-               activityViewController.popoverPresentationController?.sourceView = self.view
-        
-               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-             
-               self.present(activityViewController, animated: true, completion: nil)
-           }
+        presentShareSheet(image: UIImage().imageURL_ToUIImage(imageKey: imageKey!))
     }
+}

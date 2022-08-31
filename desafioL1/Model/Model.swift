@@ -26,16 +26,6 @@ struct Movie: Codable {
     }
 }
 
-extension UIView {
-    
-    func asImage() -> UIImage {
-       let renderer = UIGraphicsImageRenderer(bounds: bounds)
-       return renderer.image { rendererContext in
-           layer.render(in: rendererContext.cgContext)
-       }
-   }
-}
-
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -48,11 +38,12 @@ extension UIViewController {
     }
 }
 
-
+extension UIImage {
 func imageURL_ToUIImage (imageKey: String) -> UIImage {
     let urlImage = URL(string: "https://image.tmdb.org/t/p/w500/\(imageKey)")!
     
     let imageData: Data = try! Data(contentsOf: urlImage)
     
     return UIImage(data: imageData)!
+}
 }
