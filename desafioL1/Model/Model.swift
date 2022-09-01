@@ -14,6 +14,8 @@ struct Movie: Codable {
     let overview: String?
     let posterPath: String?
     let releaseDate: String?
+    let voteAverage: Double?
+    let genreIDs: [Int]
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,6 +25,8 @@ struct Movie: Codable {
         case overview
         case posterPath = "poster_path"
         case releaseDate = "release_date"
+        case voteAverage = "vote_average"
+        case genreIDs = "genre_ids"
     }
 }
 
@@ -47,3 +51,4 @@ func imageURL_ToUIImage (imageKey: String) -> UIImage {
     return UIImage(data: imageData)!
 }
 }
+

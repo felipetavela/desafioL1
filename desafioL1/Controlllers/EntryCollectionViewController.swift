@@ -8,8 +8,6 @@ class EntryCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var movieSearchBar: UISearchBar!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,12 +52,12 @@ extension EntryCollectionViewController: UICollectionViewDataSource {
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCell", for: indexPath) as? MovieCollectionViewCell else {fatalError("Movie CollectionView not found")}
         
         let movieVM = self.moviesVC.moviesAtIndex(indexPath.row)
-        
+       
         self.id = movieVM.id
-        print(movieVM.id)
-        cell.subtitleLabel.text = movieVM.originalTitle
         cell.titleLabel.text = movieVM.title
-    
+        cell.ratingView.layer.cornerRadius = 12
+        cell.ratingLabel.text = "\(movieVM.voteAverage)"
+        
         cell.posterImage.image = UIImage().imageURL_ToUIImage(imageKey: movieVM.posterPath)
         
         return cell
@@ -67,7 +65,6 @@ extension EntryCollectionViewController: UICollectionViewDataSource {
 }
 
 extension EntryCollectionViewController: UICollectionViewDelegate {
-    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
@@ -78,7 +75,9 @@ extension EntryCollectionViewController: UICollectionViewDelegate {
             vc.movieSinopse = movieVM.overview
             vc.imageKey = movieVM.posterPath
             vc.date = movieVM.releaseDate
-               vc.id = movieVM.id
+            vc.voteAverage = movieVM.voteAverage
+            vc.id = movieVM.id
+            vc.genreString = transformGenreId_toString(id: movieVM.genreIDs)
            
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -102,7 +101,12 @@ extension EntryCollectionViewController: UISearchBarDelegate {
             }
         }
     }
-
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.movieSearchBar.resignFirstResponder()
+        self.movieSearchBar.text = ""
+    }
 }
  
 

@@ -13,6 +13,7 @@ class EntryListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.setHidesBackButton(true, animated: true)
         movieSearchBar.setShowsCancelButton(true, animated: true)
         
         movieSearchBar.delegate = self
@@ -21,7 +22,7 @@ class EntryListViewController: UIViewController {
         setup()
     }
     
-    
+
     func setup()  {
         
         let url: URL = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=a3e6584e853337c35dc545ce1db606b0&language=pt-BRinclude_video=false&primary_release_date.gte=2022-08-01&primary_release_date.lte=2022-08-30")!
@@ -49,6 +50,12 @@ extension EntryListViewController: UITableViewDataSource {
         print(movieVM.id)
         cell.subtitleLabel.text = movieVM.originalTitle
         cell.titleLabel.text = movieVM.title
+        cell.ratingLabel.text = "⭐️  \(movieVM.voteAverage)"
+        
+        if transformGenreId_toString(id: movieVM.genreIDs) != nil {
+            cell.genreLabel.text = transformGenreId_toString(id: movieVM.genreIDs)
+        }
+        
     
         cell.posterImage.image = UIImage().imageURL_ToUIImage(imageKey: movieVM.posterPath)
         
@@ -77,6 +84,8 @@ extension EntryListViewController: UITableViewDelegate {
             vc.imageKey = movieVM.posterPath
             vc.date = movieVM.releaseDate
             vc.id = movieVM.id
+            vc.voteAverage = movieVM.voteAverage
+            vc.genreString = transformGenreId_toString(id: movieVM.genreIDs)
            
             self.navigationController?.pushViewController(vc, animated: true)
             
@@ -100,6 +109,11 @@ extension EntryListViewController: UISearchBarDelegate {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.movieSearchBar.resignFirstResponder()
+        self.movieSearchBar.text = ""
     }
 
 }

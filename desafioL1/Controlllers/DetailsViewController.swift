@@ -11,23 +11,35 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var subtituloLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
    
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var voteLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
+    
+    @IBOutlet weak var genreView: UIView!
+    @IBOutlet weak var rateView: UIView!
     
     var date: String?
     var movieTitle: String?
     var movieSubtitulo: String?
     var movieSinopse: String?
     var imageKey: String?
+    var voteAverage: Double?
     var id: Int?
+    var genreString: String?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        genreView.layer.cornerRadius = 10
+        rateView.layer.cornerRadius = 10
+        
+        genreLabel.text = genreString
         tituloLabel.text = movieTitle
         subtituloLabel.text = movieSubtitulo
         sinopseLabel.text = movieSinopse
         dateLabel.text = date
-        shareButton.layer.cornerRadius = 15
+        voteLabel.text = "⭐️ \(voteAverage!)"
 
         imageMovieDetails.image = UIImage().imageURL_ToUIImage(imageKey: imageKey!)
     }
@@ -45,7 +57,6 @@ class DetailsViewController: UIViewController {
             present(shareSheetVC, animated: true)
     }
 
-    
     @IBAction func shareAction(_ sender: Any) {
         
         presentShareSheet(image: UIImage().imageURL_ToUIImage(imageKey: imageKey!))
