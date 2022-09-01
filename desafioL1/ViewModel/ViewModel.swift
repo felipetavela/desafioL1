@@ -5,6 +5,7 @@ struct MoviesListViewModel {
     let movies: [Movie]
 }
 
+
 // Definicao das propriedas necessárias na TableViewDataSource e CollectionViewDataSource
 extension MoviesListViewModel {
     var numberofSection: Int {
@@ -60,10 +61,10 @@ extension MovieViewModel {
         } else {return "Sem sinópse"}
     }
     
-    var posterPath: String {
+    var posterPath: String? {
         if self.movie.posterPath != nil {
             return self.movie.posterPath!
-        } else {return ""}
+        } else {return nil}
     }
    
     var releaseDate: String {
@@ -79,8 +80,8 @@ extension MovieViewModel {
     }
     
     var genreIDs: Int {
-        if self.movie.id != nil {
-            return self.movie.genreIDs[0]
+        if self.movie.genreIDs.first != nil {
+            return self.movie.genreIDs.first!
         } else {return 0 }
     }
 }
@@ -110,5 +111,18 @@ func changeGenreIDToString (id: Int) -> String? {
     }
 }
 
+// Método responsável por transformar o formato da dataFormat"yyyy-MM-dd" em ""dd/MM/yyyy""
+func formattedDateFromString(dateString: String) -> String? {
+
+    let inputFormatter = DateFormatter()
+    inputFormatter.dateFormat = "yyyy-MM-dd"
+    if let date = inputFormatter.date(from: dateString) {
+
+    let outputFormatter = DateFormatter()
+    outputFormatter.dateFormat = "dd/MM/yyyy"
+    return outputFormatter.string(from: date)
+    }
+    return nil
+}
 
 

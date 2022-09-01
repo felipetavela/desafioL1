@@ -11,6 +11,7 @@ class EntryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         self.navigationItem.setHidesBackButton(true, animated: true)
        
         searchBar.setShowsCancelButton(true, animated: true)
@@ -24,7 +25,7 @@ class EntryListViewController: UIViewController {
     
     // Método que irá fazer a chamada da API. Como foi dito o método getData iria receber um URL, e através do completion foi inicializada a variável moviesVC e também recarregada a própria tableView, agora já com os dados necessários.
     func setup()  {
-        let url: URL = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=a3e6584e853337c35dc545ce1db606b0&language=pt-BRinclude_video=false&primary_release_date.gte=2022-08-01&primary_release_date.lte=2022-08-30")!
+        let url: URL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a3e6584e853337c35dc545ce1db606b0&language=pt-BR&page=1")!
         
         Webservice().getData(url: url) { movie in
             self.moviesVC = MoviesListViewModel(movies: movie!)
@@ -33,6 +34,11 @@ class EntryListViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    // Método para poder chamar os filmes recentes.
+    @IBAction func refreshAction(_ sender: Any) {
+        setup()
     }
 }
 
@@ -56,6 +62,7 @@ extension EntryListViewController: UITableViewDataSource {
         cell.genreLabel.text = changeGenreIDToString(id: movieVM.genreIDs)
         }
     
+        
         return cell
     }
     

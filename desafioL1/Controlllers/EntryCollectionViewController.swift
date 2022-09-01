@@ -15,15 +15,18 @@ class EntryCollectionViewController: UIViewController {
         
         movieSearchBar.setShowsCancelButton(true, animated: true)
         movieSearchBar.delegate = self
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         
         setup()
     }
  
+    @IBAction func buttonAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func setup()  {
-        let url: URL = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=a3e6584e853337c35dc545ce1db606b0&language=pt-BRinclude_video=false&primary_release_date.gte=2022-08-01&primary_release_date.lte=2022-08-30")!
+        let url: URL = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a3e6584e853337c35dc545ce1db606b0&language=pt-BR&page=1")!
         
         Webservice().getData(url: url) { movie in
             self.moviesVC = MoviesListViewModel(movies: movie!)
@@ -32,6 +35,10 @@ class EntryCollectionViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    @IBAction func refreshAction(_ sender: Any) {
+        setup()
     }
 }
 

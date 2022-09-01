@@ -17,6 +17,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var genreView: UIView!
     @IBOutlet weak var rateView: UIView!
+
     
     var date: String?
     var movieTitle: String?
@@ -30,15 +31,19 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+              
         genreView.layer.cornerRadius = 10
         rateView.layer.cornerRadius = 10
         
-        genreLabel.text = genreString
+        if let genreString = genreString {
+            genreLabel.text = genreString
+        } else {genreLabel.text = "-"}
+    
         titleLabel.text = movieTitle
         subtitleLabel.text = movieSubtitle
         overviewLabel.text = movieOverview
-        dateLabel.text = date
+        let newDate = formattedDateFromString(dateString: date!)
+        dateLabel.text = "Data de lançamento: \(newDate!)"
         rateLabel.text = "⭐️ \(voteAverage!)"
         imageMovieDetails.image = UIImage().posterPath_ToImage(imageKey: imageKey!)
     }
