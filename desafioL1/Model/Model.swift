@@ -1,14 +1,14 @@
 import Foundation
 import UIKit
 
+// Struct Results contendo a constate results(array da classe Movie), conforme o JSON.
 struct Results: Codable {
     let results: [Movie]
 }
 
+// Struct Movie contendo todas as constantes necessárias e seus especificos CodignKeys(Necessário para traduzir o JSON)
 struct Movie: Codable {
-    
     let id: Int?
-    let imdbID: String?
     let title: String?
     let originalTitle: String?
     let overview: String?
@@ -20,7 +20,6 @@ struct Movie: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case imdbID = "imdb_id"
         case originalTitle = "original_title"
         case overview
         case posterPath = "poster_path"
@@ -30,25 +29,13 @@ struct Movie: Codable {
     }
 }
 
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
+// Através da API seria recebido apenas um código para ser acrescentado num URL. Esse método recebe o código adiciona na URL, e então faz a solicitacao dos dados.
+extension UIImage {
+func posterPath_ToImage (imageKey: String) -> UIImage {
+    let urlImage = URL(string: "https://image.tmdb.org/t/p/w500/\(imageKey)")!
+    let imageData: Data = try! Data(contentsOf: urlImage)
+    return UIImage(data: imageData)!
+     }
 }
 
-extension UIImage {
-func imageURL_ToUIImage (imageKey: String) -> UIImage {
-    let urlImage = URL(string: "https://image.tmdb.org/t/p/w500/\(imageKey)")!
-    
-    let imageData: Data = try! Data(contentsOf: urlImage)
-    
-    return UIImage(data: imageData)!
-}
-}
 

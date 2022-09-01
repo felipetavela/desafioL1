@@ -1,11 +1,12 @@
 import Foundation
 
+// Lista de filmes.(Array contendo todos os filmes)
 struct MoviesListViewModel {
     let movies: [Movie]
 }
 
+// Definicao das propriedas necessárias na TableViewDataSource e CollectionViewDataSource
 extension MoviesListViewModel {
-    
     var numberofSection: Int {
         return 1
     }
@@ -14,37 +15,33 @@ extension MoviesListViewModel {
         return self.movies.count
     }
     
+    // Método que irá retornar um filme no especifico lugar do array.
     func moviesAtIndex (_ index: Int) -> MovieViewModel {
         let movie = self.movies[index]
         return MovieViewModel(movie)
     }
 }
 
+// Struct contendo as propriedades que irão ser mostradas na View.
 struct MovieViewModel {
-    
     let movie: Movie
-
 }
 
+// Inicialização da mesma.
 extension MovieViewModel {
     init(_ movies: Movie) {
         self.movie = movies
     }
 }
 
+// Inicializacao da propriedadeo. Levando se em conta que alguns filmes não possuem certos dados as propridades foram criadas na Model como opcionais e aqui foi feita a verificacao.
 extension MovieViewModel {
     var id: Int {
-       
         if self.movie.id != nil {
         return self.movie.id!
         } else {return 0}
     }
     
-    var imdbID: String {
-        if self.movie.imdbID != nil {
-            return self.movie.imdbID!
-        } else {return ""}
-    }
     var title: String {
         if self.movie.title != nil {
             return self.movie.title!
@@ -86,13 +83,11 @@ extension MovieViewModel {
             return self.movie.genreIDs[0]
         } else {return 0 }
     }
-
 }
 
-func transformGenreId_toString (id: Int) -> String? {
-    
+// Foi verificado através da documentacao cada id e seu gênero conrrespondente, baseado nisso foi criado este método que irá receber o ID e transformálo na string respectiva.
+func changeGenreIDToString (id: Int) -> String? {
     switch id {
-    
     case 28: return "Ação"
     case 12: return "Animação"
     case 35: return "Comédia"
@@ -112,7 +107,6 @@ func transformGenreId_toString (id: Int) -> String? {
     case 10752: return "Guerra"
     case 37: return "Faroeste"
     default: return nil
-        
     }
 }
 

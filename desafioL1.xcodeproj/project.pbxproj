@@ -21,9 +21,11 @@
 		284C874728BED6D700EA16B8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C874628BED6D600EA16B8 /* SplashViewController.swift */; };
 		284C874928BFCBFE00EA16B8 /* EntryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C874828BFCBFD00EA16B8 /* EntryCollectionViewController.swift */; };
 		284C874D28BFD06300EA16B8 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284C874C28BFD06300EA16B8 /* MovieCollectionViewCell.swift */; };
+		46117330E18D7988E244B362 /* Pods_desafioL1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC7CCBE27B4F5C937520DD7 /* Pods_desafioL1.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110A73AAF5C00BFE1DD80A78 /* Pods-desafioL1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desafioL1.release.xcconfig"; path = "Target Support Files/Pods-desafioL1/Pods-desafioL1.release.xcconfig"; sourceTree = "<group>"; };
 		284C871F28BE612700EA16B8 /* desafioL1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = desafioL1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		284C872228BE612700EA16B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		284C872428BE612700EA16B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		284C874628BED6D600EA16B8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		284C874828BFCBFD00EA16B8 /* EntryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewController.swift; sourceTree = "<group>"; };
 		284C874C28BFD06300EA16B8 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		9A63E6E3F81050FD6D58B97C /* Pods-desafioL1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desafioL1.debug.xcconfig"; path = "Target Support Files/Pods-desafioL1/Pods-desafioL1.debug.xcconfig"; sourceTree = "<group>"; };
+		AAC7CCBE27B4F5C937520DD7 /* Pods_desafioL1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desafioL1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46117330E18D7988E244B362 /* Pods_desafioL1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +63,8 @@
 			children = (
 				284C872128BE612700EA16B8 /* desafioL1 */,
 				284C872028BE612700EA16B8 /* Products */,
+				AD3DA31B5FA5A0CA27436DFA /* Pods */,
+				2B42B003C4538F52B0601104 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +138,24 @@
 			path = Controlllers;
 			sourceTree = "<group>";
 		};
+		2B42B003C4538F52B0601104 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAC7CCBE27B4F5C937520DD7 /* Pods_desafioL1.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD3DA31B5FA5A0CA27436DFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A63E6E3F81050FD6D58B97C /* Pods-desafioL1.debug.xcconfig */,
+				110A73AAF5C00BFE1DD80A78 /* Pods-desafioL1.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +163,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 284C873328BE612A00EA16B8 /* Build configuration list for PBXNativeTarget "desafioL1" */;
 			buildPhases = (
+				BFABD0236668B187BB7E2854 /* [CP] Check Pods Manifest.lock */,
 				284C871B28BE612700EA16B8 /* Sources */,
 				284C871C28BE612700EA16B8 /* Frameworks */,
 				284C871D28BE612700EA16B8 /* Resources */,
@@ -196,6 +222,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFABD0236668B187BB7E2854 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-desafioL1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		284C871B28BE612700EA16B8 /* Sources */ = {
@@ -354,6 +405,7 @@
 		};
 		284C873428BE612A00EA16B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A63E6E3F81050FD6D58B97C /* Pods-desafioL1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -382,6 +434,7 @@
 		};
 		284C873528BE612A00EA16B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 110A73AAF5C00BFE1DD80A78 /* Pods-desafioL1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

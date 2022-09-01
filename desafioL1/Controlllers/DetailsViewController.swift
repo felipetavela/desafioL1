@@ -1,27 +1,27 @@
 import Foundation
 import UIKit
 
+// View onde é exibido os detalhes dos filmes.
 class DetailsViewController: UIViewController {
     
     var moviesVC: MoviesListViewModel!
     
-    @IBOutlet weak var imageMovieDetails: UIImageView!
-    @IBOutlet weak var sinopseLabel: UILabel!
-    @IBOutlet weak var tituloLabel: UILabel!
-    @IBOutlet weak var subtituloLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-   
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var voteLabel: UILabel!
-    @IBOutlet weak var shareButton: UIButton!
     
+    @IBOutlet weak var imageMovieDetails: UIImageView!
+    @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var genreView: UIView!
     @IBOutlet weak var rateView: UIView!
     
     var date: String?
     var movieTitle: String?
-    var movieSubtitulo: String?
-    var movieSinopse: String?
+    var movieSubtitle: String?
+    var movieOverview: String?
     var imageKey: String?
     var voteAverage: Double?
     var id: Int?
@@ -35,18 +35,18 @@ class DetailsViewController: UIViewController {
         rateView.layer.cornerRadius = 10
         
         genreLabel.text = genreString
-        tituloLabel.text = movieTitle
-        subtituloLabel.text = movieSubtitulo
-        sinopseLabel.text = movieSinopse
+        titleLabel.text = movieTitle
+        subtitleLabel.text = movieSubtitle
+        overviewLabel.text = movieOverview
         dateLabel.text = date
-        voteLabel.text = "⭐️ \(voteAverage!)"
-
-        imageMovieDetails.image = UIImage().imageURL_ToUIImage(imageKey: imageKey!)
+        rateLabel.text = "⭐️ \(voteAverage!)"
+        imageMovieDetails.image = UIImage().posterPath_ToImage(imageKey: imageKey!)
     }
     
-    
+    // Método para compartilhamento do link e imagem.
     @objc private func presentShareSheet(image: UIImage){
         
+        // A principio não sabia quais dados compartilhar, porém ao ver o URL do site percebi que as páginas dos filmes recebiam o mesmo ID recebido pela API.
         guard let url = URL(string: "https://www.themoviedb.org/movie/\(id!)") else {return}
         
             let shareSheetVC = UIActivityViewController (activityItems: [
@@ -57,8 +57,8 @@ class DetailsViewController: UIViewController {
             present(shareSheetVC, animated: true)
     }
 
+    // Método que identificará o toque no botão de compartilhamento.
     @IBAction func shareAction(_ sender: Any) {
-        
-        presentShareSheet(image: UIImage().imageURL_ToUIImage(imageKey: imageKey!))
+        presentShareSheet(image: UIImage().posterPath_ToImage(imageKey: imageKey!))
     }
 }
