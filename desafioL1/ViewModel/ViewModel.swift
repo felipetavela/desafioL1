@@ -39,7 +39,7 @@ extension MovieViewModel {
 extension MovieViewModel {
     var id: Int {
         if self.movie.id != nil {
-        return self.movie.id!
+            return self.movie.id!
         } else {return 0}
     }
     
@@ -66,7 +66,7 @@ extension MovieViewModel {
             return self.movie.posterPath!
         } else {return nil}
     }
-   
+    
     var releaseDate: String {
         if self.movie.releaseDate != nil {
             return self.movie.releaseDate!
@@ -79,50 +79,67 @@ extension MovieViewModel {
         } else {return 0}
     }
     
-    var genreIDs: Int {
+    var genreIDs: String {
         if self.movie.genreIDs.first != nil {
-            return self.movie.genreIDs.first!
-        } else {return 0 }
+            switch self.movie.genreIDs.first! {
+            case 28: return "Ação"
+            case 12: return "Animação"
+            case 35: return "Comédia"
+            case 80: return "Crime"
+            case 99: return "Documnetário"
+            case 18: return "Drama"
+            case 10751: return "Família"
+            case 14: return "Fantasia"
+            case 36: return "História"
+            case 27: return "Terror"
+            case 10402: return "Música"
+            case 9648: return "Mistério"
+            case 10749: return "Romance"
+            case 878: return "Ficção científica"
+            case 10770: return "Cinema TV"
+            case 53: return "Thriller"
+            case 10752: return "Guerra"
+            case 37: return "Faroeste"
+            default: return "-"
+            }
+        } else {return "-"}
     }
-}
-
-// Foi verificado através da documentacao cada id e seu gênero conrrespondente, baseado nisso foi criado este método que irá receber o ID e transformálo na string respectiva.
-func changeGenreIDToString (id: Int) -> String? {
-    switch id {
-    case 28: return "Ação"
-    case 12: return "Animação"
-    case 35: return "Comédia"
-    case 80: return "Crime"
-    case 99: return "Documnetário"
-    case 18: return "Drama"
-    case 10751: return "Família"
-    case 14: return "Fantasia"
-    case 36: return "História"
-    case 27: return "Terror"
-    case 10402: return "Música"
-    case 9648: return "Mistério"
-    case 10749: return "Romance"
-    case 878: return "Ficção científica"
-    case 10770: return "Cinema TV"
-    case 53: return "Thriller"
-    case 10752: return "Guerra"
-    case 37: return "Faroeste"
-    default: return nil
+    
+    // Foi verificado através da documentacao cada id e seu gênero conrrespondente, baseado nisso foi criado este método que irá receber o ID e transformálo na string respectiva.
+    func changeGenreIDToString (id: Int) -> String? {
+        switch id {
+        case 28: return "Ação"
+        case 12: return "Animação"
+        case 35: return "Comédia"
+        case 80: return "Crime"
+        case 99: return "Documnetário"
+        case 18: return "Drama"
+        case 10751: return "Família"
+        case 14: return "Fantasia"
+        case 36: return "História"
+        case 27: return "Terror"
+        case 10402: return "Música"
+        case 9648: return "Mistério"
+        case 10749: return "Romance"
+        case 878: return "Ficção científica"
+        case 10770: return "Cinema TV"
+        case 53: return "Thriller"
+        case 10752: return "Guerra"
+        case 37: return "Faroeste"
+        default: return nil
+        }
     }
-}
-
-// Método responsável por transformar o formato da dataFormat"yyyy-MM-dd" em ""dd/MM/yyyy""
-func formattedDateFromString(dateString: String) -> String? {
-
-    let inputFormatter = DateFormatter()
-    inputFormatter.dateFormat = "yyyy-MM-dd"
-    if let date = inputFormatter.date(from: dateString) {
-
-    let outputFormatter = DateFormatter()
-    outputFormatter.dateFormat = "dd/MM/yyyy"
-    return outputFormatter.string(from: date)
+    
+    // Método responsável por transformar o formato da dataFormat"yyyy-MM-dd" em ""dd/MM/yyyy""
+    static func formattedDateFromString(dateString: String) -> String? {
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        let date = inputFormatter.date(from: dateString)!
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd/MM/yyyy"
+        return outputFormatter.string(from: date)
     }
-    return nil
 }
 
 

@@ -4,9 +4,6 @@ import UIKit
 // View onde é exibido os detalhes dos filmes.
 class DetailsViewController: UIViewController {
     
-    var moviesVC: MoviesListViewModel!
-    
-    
     @IBOutlet weak var imageMovieDetails: UIImageView!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -17,42 +14,36 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var genreView: UIView!
     @IBOutlet weak var rateView: UIView!
-
     
-    var date: String?
-    var movieTitle: String?
-    var movieSubtitle: String?
-    var movieOverview: String?
-    var imageKey: String?
-    var voteAverage: Double?
-    var id: Int?
-    var genreString: String?
+    var myImage: UIImage?
 
-    
+    var movieVM: MovieViewModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-              
+          setupView()
+        
+    }
+    
+    func setupView() {
+        
         genreView.layer.cornerRadius = 10
         rateView.layer.cornerRadius = 10
+        titleLabel.text = movieVM?.title
+        subtitleLabel.text = movieVM?.originalTitle
+        overviewLabel.text = movieVM?.overview
         
-        if let genreString = genreString {
-            genreLabel.text = genreString
-        } else {genreLabel.text = "-"}
-    
-        titleLabel.text = movieTitle
-        subtitleLabel.text = movieSubtitle
-        overviewLabel.text = movieOverview
-        let newDate = formattedDateFromString(dateString: date!)
+        let newDate = MovieViewModel.formattedDateFromString(dateString: movieVM?.releaseDate ?? "")
         dateLabel.text = "Data de lançamento: \(newDate!)"
-        rateLabel.text = "⭐️ \(voteAverage!)"
-        imageMovieDetails.image = UIImage().posterPath_ToImage(imageKey: imageKey!)
+        rateLabel.text = "⭐️ \(movieVM!.voteAverage)"
+        imageMovieDetails.image = myImage
     }
     
     // Método para compartilhamento do link e imagem.
     @objc private func presentShareSheet(image: UIImage){
         
         // A principio não sabia quais dados compartilhar, porém ao ver o URL do site percebi que as páginas dos filmes recebiam o mesmo ID recebido pela API.
-        guard let url = URL(string: "https://www.themoviedb.org/movie/\(id!)") else {return}
+        guard let url = URL(string: "https://www.themoviedb.org/movie/\(movieVM!.id)") else {return}
         
             let shareSheetVC = UIActivityViewController (activityItems: [
                 image,
@@ -64,6 +55,6 @@ class DetailsViewController: UIViewController {
 
     // Método que identificará o toque no botão de compartilhamento.
     @IBAction func shareAction(_ sender: Any) {
-        presentShareSheet(image: UIImage().posterPath_ToImage(imageKey: imageKey!))
+        presentShareSheet(image: myImage!)
     }
 }

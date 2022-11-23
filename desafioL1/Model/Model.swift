@@ -30,17 +30,7 @@ struct Movie: Codable {
 
 }
 
-// Através da API seria recebido apenas um código para ser acrescentado num URL. Esse método recebe o código adiciona na URL, e então faz a solicitacao dos dados.
-extension UIImage {
-func posterPath_ToImage (imageKey: String?) -> UIImage {
-    
-    guard let imageKey = imageKey else {return UIImage(named: "photodefault")!}
-   
-    let urlImage = URL(string: "https://image.tmdb.org/t/p/w500/\(imageKey)")!
-    let imageData: Data = try! Data(contentsOf: urlImage)
-    return UIImage(data: imageData)!
-}
-}
+
 
 
 
